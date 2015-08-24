@@ -1,0 +1,161 @@
+﻿<script>
+    function nameQuery()
+    {
+        $('#gridCustomers').data('kendoGrid').dataSource.read();
+        $('#gridCustomers').data('kendoGrid').refresh();
+    }
+</script>
+    <div id="telSearch" class="section-box">
+    <table>
+        <tr>
+            <td>
+                所有權人查詢：
+            </td>
+            <td>
+            <td>
+                <input id="strName" name="strName" style="width:150px" />
+            </td>
+            <td>
+                <input id="TELquery" type="button" value="搜尋" style="width:50px" onclick="nameQuery()" />
+            </td>
+        </tr>
+    </table>
+</div>
+<style>
+    .section-box {
+        margin-top: 20px;
+        padding: 10px;
+        -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.45), inset 0 0 30px rgba(0,0,0,0.07);
+        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.45), inset 0 0 30px rgba(0,0,0,0.07);
+        box-shadow: 0 1px 2px rgba(0,0,0,0.45), inset 0 0 30px rgba(0,0,0,0.07);
+        -webkit-border-radius: 8px;
+        -moz-border-radius: 8px;
+        border-radius: 8px;
+    }
+</style>
+
+    <div id="gridCustomers"></div>
+
+<style type="text/css">
+    .k-edit-form-container {
+        width: 900px;
+        margin-left: 10px;
+    }
+
+    .k-edit-form-container .k-edit-label {
+        width: 150px;
+        vertical-align:bottom;
+        font-size:medium;
+    }
+    .k-edit-form-container .k-textbox {
+    width: 250px;
+    }
+
+</style>
+<script id="popup-editor" type="text/x-kendo-template">
+    <table id="teamEditor">
+        <tr>
+            <td>
+                <div class="k-edit-label">
+                    <label for="name">名稱:&nbsp;</label>
+                </div>
+            </td>
+            <td><input type="text" id="name" class="k-input k-textbox" data-bind="value:name" name="name" required />
+                <input id="id" name="id" style="display: none;" data-bind="value:id" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="k-edit-label">
+                    <label for="unid">統一編號:&nbsp;</label>
+                </div>
+            </td>
+            <td><input type="text" id="unid" class="k-input k-textbox" data-bind="value:unid" /></td>
+        </tr>
+        <tr>
+            <td>
+                <div class="k-edit-label">
+                    <label for="address">公司地址:&nbsp;</label>
+                </div>
+            </td>
+            <td><input type="text" id="address" class="k-input k-textbox" data-bind="value:address" /></td>
+            <td>
+            </td>
+            <td></td>
+        </tr>
+    </table>
+</script>
+<script type="text/x-kendo-template" id="detailtemplate">
+    <table class="k-grid table">
+        <tr>
+            <td class="tdTitle01" style="width:70px" align="center">
+                名稱
+            </td>
+            <td class="tdContent02">
+                #= (name == null) ? '' : name #
+            </td>
+            <td class="tdTitle01" style="width:70px" align="center">
+                統一編號
+            </td>
+            <td class="tdContent02">
+                #= (unid == null) ? '' : unid #
+            </td>
+            <td class="tdTitle01" style="width:70px" align="center">
+                公司地址
+            </td>
+            <td class="tdContent02" colspan="3">
+                #= (address == null) ? '' : address #
+            </td>
+            <td class="tdTitle01" style="width:70px" align="center"></td>
+            <td class="tdContent02"></td>
+        </tr>
+    </table>
+</script>
+<script>
+    var initialLoad = true;
+    var customersViewPhone_apiUrl = "api/customers/phone";
+    var customersView_dataSource = new kendo.data.DataSource({
+        data: [
+                   { "id": 13, "name": "森美交通器材行", "unid": "04270976", "address": "100 台北市中正區林森南路45號"}
+        ],
+    });
+
+    $("#gridCustomers").kendoGrid({
+        dataSource: customersView_dataSource,
+        detailTemplate: kendo.template($("#detailtemplate").html()),
+        pageable: true,
+        sortable: true,
+        height: "600px",
+        filterable:
+            {
+                extra: false,
+                operators: {
+                    string: {
+                        Contains: "包含"
+                    }
+                }
+            },
+        toolbar: ["create"],
+        columns: [
+            { field: "id", hidden: true },
+            { field: "name", title: "名稱" },
+            { field: "unid", title: "統一編號", hidden: true },
+            { field: "address", title: "地址", hidden: true },
+            { command: ["edit", "destroy"], title: "&nbsp;" }
+        ],
+        editable: {
+            mode: "popup",
+            window: {
+                title: "內容"
+            },
+            template: kendo.template($("#popup-editor").html()),
+            confirmation: "確定刪除?"
+        },
+        edit: function (e) {
+            if (e.model.isNew()) {
+                
+            }
+        },
+    });
+
+</script>
