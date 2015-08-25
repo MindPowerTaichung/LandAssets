@@ -1,15 +1,15 @@
 ﻿<script>
     function nameQuery()
     {
-        $('#gridSearchOwner').data('kendoGrid').dataSource.read();
-        $('#gridSearchOwner').data('kendoGrid').refresh();
+        $('#gridSearchLocation').data('kendoGrid').dataSource.read();
+        $('#gridSearchLocation').data('kendoGrid').refresh();
     }
 </script>
     <div id="telSearch" class="section-box">
     <table>
         <tr>
             <td>
-                所有權人查詢：
+                地段地號查詢：
             </td>
             <td>
             <td>
@@ -34,7 +34,7 @@
     }
 </style>
 
-    <div id="gridSearchOwner"></div>
+    <div id="gridSearchLocation"></div>
 
 <style type="text/css">
     .k-edit-form-container {
@@ -57,7 +57,7 @@
         <tr>
             <td>
                 <div class="k-edit-label">
-                    <label for="name">名稱:&nbsp;</label>
+                    <label for="name">宗地地段地號:&nbsp;</label>
                 </div>
             </td>
             <td><input type="text" id="name" class="k-input k-textbox" data-bind="value:name" name="name" required />
@@ -67,7 +67,7 @@
         <tr>
             <td>
                 <div class="k-edit-label">
-                    <label for="unid">統一編號:&nbsp;</label>
+                    <label for="unid">地號:&nbsp;</label>
                 </div>
             </td>
             <td><input type="text" id="unid" class="k-input k-textbox" data-bind="value:unid" name="unid" /></td>
@@ -75,10 +75,10 @@
         <tr>
             <td>
                 <div class="k-edit-label">
-                    <label for="address">公司地址:&nbsp;</label>
+                    <label for="reason">登記原因:&nbsp;</label>
                 </div>
             </td>
-            <td><input type="text" id="address" class="k-input k-textbox" data-bind="value:address" name="address" /></td>
+            <td><input type="text" id="reason" class="k-input k-textbox" data-bind="value:reason" name="reason" /></td>
             <td>
             </td>
             <td></td>
@@ -89,22 +89,22 @@
     <table class="k-grid table">
         <tr>
             <td class="tdTitle01" style="width:70px" align="center">
-                名稱
+                宗地地段地號
             </td>
             <td class="tdContent02">
                 #= (name == null) ? '' : name #
             </td>
             <td class="tdTitle01" style="width:70px" align="center">
-                統一編號
+                地號
             </td>
             <td class="tdContent02">
                 #= (unid == null) ? '' : unid #
             </td>
             <td class="tdTitle01" style="width:70px" align="center">
-                公司地址
+                登記原因
             </td>
             <td class="tdContent02" colspan="3">
-                #= (address == null) ? '' : address #
+                #= (reason == null) ? '' : reason #
             </td>
             <td class="tdTitle01" style="width:70px" align="center"></td>
             <td class="tdContent02"></td>
@@ -116,13 +116,13 @@
     var customersViewPhone_apiUrl = "api/customers/phone";
     var customersView_dataSource = new kendo.data.DataSource({
         data: [
-                   { "id": 1, "name": "行政院農委會林務局", "unid": "0000000158", "address": "100 台北市中正區杭州南路一段2號" },
-                   { "id": 2, "name": "財政部國有局", "unid": "0000000156", "address": "100 台北市中正區中華路二段133號" },
-                   { "id": 3, "name": "經濟部水利署", "unid": "0000000159", "address": "408 臺中市南屯區黎明路2段501號" }
+                   { "id": 1, "name": "桃園縣 中壢市 中寮", "unid": "0318 0803 0000", "reason": "逕為分割" },
+                   { "id": 2, "name": "桃園縣 中壢市 後興", "unid": "0319 0003 0000", "reason": "逕為分割" },
+                   { "id": 3, "name": "桃園縣 中壢市 後興", "unid": "0319 0006 0000", "reason": "地籍圖重測" }
         ]
     });
 
-    $("#gridSearchOwner").kendoGrid({
+    $("#gridSearchLocation").kendoGrid({
         dataSource: customersView_dataSource,
         detailTemplate: kendo.template($("#detailtemplate").html()),
         pageable: true,
@@ -140,9 +140,9 @@
         toolbar: ["create"],
         columns: [
             { field: "id", hidden: true },
-            { field: "name", title: "名稱" },
-            { field: "unid", title: "統一編號", hidden: true },
-            { field: "address", title: "地址", hidden: true },
+            { field: "name", title: "宗地地段地號" },
+            { field: "unid", title: "地號", hidden: true },
+            { field: "reason", title: "登記原因", hidden: true },
             { command: ["edit","destroy"], title: "&nbsp;" }
         ],
         editable: {

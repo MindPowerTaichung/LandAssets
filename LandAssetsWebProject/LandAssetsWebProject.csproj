@@ -78,6 +78,7 @@
     <Content Include="login.html" />
     <Content Include="views\css\GAOJAI.css" />
     <Content Include="views\images\logo2.png" />
+    <Content Include="views\search_location.html" />
     <Content Include="views\search_owner.html" />
     <Content Include="views\images\GAOJAI-logo1.png" />
     <Content Include="views\images\GAOJAI-logo2.png" />
