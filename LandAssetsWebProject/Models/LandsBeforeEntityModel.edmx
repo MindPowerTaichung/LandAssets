@@ -1,0 +1,222 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="LandAssetsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="LandsBefore">
+          <Key>
+            <PropertyRef Name="NoA" />
+            <PropertyRef Name="NoB" />
+            <PropertyRef Name="NoC" />
+          </Key>
+          <Property Name="NoA" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="NoB" Type="nchar" MaxLength="4" Nullable="false" />
+          <Property Name="NoC" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="RegisterNo" Type="char" MaxLength="7" />
+          <Property Name="RegisterDate" Type="date" />
+          <Property Name="RegisterReasonId" Type="int" />
+          <Property Name="LandTypeId" Type="int" />
+          <Property Name="LandArea" Type="float" />
+          <Property Name="CurrentValue" Type="int" />
+          <Property Name="AnnourceValue" Type="int" />
+          <Property Name="Timestamp" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LandTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Timestamp" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RegisterReasonTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Reason" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Timestamp" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_LandsBefore_LandTypes">
+          <End Role="LandTypes" Type="Self.LandTypes" Multiplicity="0..1" />
+          <End Role="LandsBefore" Type="Self.LandsBefore" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LandTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LandsBefore">
+              <PropertyRef Name="LandTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LandsBefore_RegisterReasonTypes">
+          <End Role="RegisterReasonTypes" Type="Self.RegisterReasonTypes" Multiplicity="0..1" />
+          <End Role="LandsBefore" Type="Self.LandsBefore" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegisterReasonTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LandsBefore">
+              <PropertyRef Name="RegisterReasonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LandAssetsModelStoreContainer">
+          <EntitySet Name="LandsBefore" EntityType="Self.LandsBefore" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LandTypes" EntityType="Self.LandTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RegisterReasonTypes" EntityType="Self.RegisterReasonTypes" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_LandsBefore_LandTypes" Association="Self.FK_LandsBefore_LandTypes">
+            <End Role="LandTypes" EntitySet="LandTypes" />
+            <End Role="LandsBefore" EntitySet="LandsBefore" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LandsBefore_RegisterReasonTypes" Association="Self.FK_LandsBefore_RegisterReasonTypes">
+            <End Role="RegisterReasonTypes" EntitySet="RegisterReasonTypes" />
+            <End Role="LandsBefore" EntitySet="LandsBefore" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LandAssetsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="LandAssetsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="LandsBefores" EntityType="LandAssetsModel.LandsBefore" />
+          <EntitySet Name="RegisterReasonTypes" EntityType="LandAssetsModel.RegisterReasonType" />
+          <AssociationSet Name="FK_LandsBefore_RegisterReasonTypes" Association="LandAssetsModel.FK_LandsBefore_RegisterReasonTypes">
+            <End Role="RegisterReasonType" EntitySet="RegisterReasonTypes" />
+            <End Role="LandsBefore" EntitySet="LandsBefores" />
+          </AssociationSet>
+          <EntitySet Name="LandTypes" EntityType="LandAssetsModel.LandType" />
+          <AssociationSet Name="FK_LandsBefore_LandTypes" Association="LandAssetsModel.FK_LandsBefore_LandTypes">
+            <End Role="LandType" EntitySet="LandTypes" />
+            <End Role="LandsBefore" EntitySet="LandsBefores" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="LandsBefore">
+          <Key>
+            <PropertyRef Name="NoA" />
+            <PropertyRef Name="NoB" />
+            <PropertyRef Name="NoC" />
+          </Key>
+          <Property Name="NoA" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="NoB" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="true" />
+          <Property Name="NoC" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="RegisterNo" Type="String" MaxLength="7" FixedLength="true" Unicode="false" />
+          <Property Name="RegisterDate" Type="DateTime" Precision="0" />
+          <Property Name="RegisterReasonId" Type="Int32" />
+          <Property Name="LandTypeId" Type="Int32" />
+          <Property Name="LandArea" Type="Double" />
+          <Property Name="CurrentValue" Type="Int32" />
+          <Property Name="AnnourceValue" Type="Int32" />
+          <Property Name="Timestamp" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="RegisterReasonType" Relationship="LandAssetsModel.FK_LandsBefore_RegisterReasonTypes" FromRole="LandsBefore" ToRole="RegisterReasonType" />
+          <NavigationProperty Name="LandType" Relationship="LandAssetsModel.FK_LandsBefore_LandTypes" FromRole="LandsBefore" ToRole="LandType" />
+        </EntityType>
+        <EntityType Name="RegisterReasonType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Reason" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Timestamp" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="LandsBefores" Relationship="LandAssetsModel.FK_LandsBefore_RegisterReasonTypes" FromRole="RegisterReasonType" ToRole="LandsBefore" />
+        </EntityType>
+        <Association Name="FK_LandsBefore_RegisterReasonTypes">
+          <End Type="LandAssetsModel.RegisterReasonType" Role="RegisterReasonType" Multiplicity="0..1" />
+          <End Type="LandAssetsModel.LandsBefore" Role="LandsBefore" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegisterReasonType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LandsBefore">
+              <PropertyRef Name="RegisterReasonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="LandType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Timestamp" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="LandsBefores" Relationship="LandAssetsModel.FK_LandsBefore_LandTypes" FromRole="LandType" ToRole="LandsBefore" />
+        </EntityType>
+        <Association Name="FK_LandsBefore_LandTypes">
+          <End Type="LandAssetsModel.LandType" Role="LandType" Multiplicity="0..1" />
+          <End Type="LandAssetsModel.LandsBefore" Role="LandsBefore" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LandType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LandsBefore">
+              <PropertyRef Name="LandTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LandAssetsModelStoreContainer" CdmEntityContainer="LandAssetsEntities">
+          <EntitySetMapping Name="LandsBefores">
+            <EntityTypeMapping TypeName="LandAssetsModel.LandsBefore">
+              <MappingFragment StoreEntitySet="LandsBefore">
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+                <ScalarProperty Name="AnnourceValue" ColumnName="AnnourceValue" />
+                <ScalarProperty Name="CurrentValue" ColumnName="CurrentValue" />
+                <ScalarProperty Name="LandArea" ColumnName="LandArea" />
+                <ScalarProperty Name="LandTypeId" ColumnName="LandTypeId" />
+                <ScalarProperty Name="RegisterReasonId" ColumnName="RegisterReasonId" />
+                <ScalarProperty Name="RegisterDate" ColumnName="RegisterDate" />
+                <ScalarProperty Name="RegisterNo" ColumnName="RegisterNo" />
+                <ScalarProperty Name="NoC" ColumnName="NoC" />
+                <ScalarProperty Name="NoB" ColumnName="NoB" />
+                <ScalarProperty Name="NoA" ColumnName="NoA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RegisterReasonTypes">
+            <EntityTypeMapping TypeName="LandAssetsModel.RegisterReasonType">
+              <MappingFragment StoreEntitySet="RegisterReasonTypes">
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LandTypes">
+            <EntityTypeMapping TypeName="LandAssetsModel.LandType">
+              <MappingFragment StoreEntitySet="LandTypes">
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
