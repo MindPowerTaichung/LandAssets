@@ -83,11 +83,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\LandAssets.mdf" />
     <Content Include="App_Data\LandAssetsDBSchema.sql" />
-    <Content Include="App_Data\LandAssets_log.ldf">
-      <DependentUpon>LandAssets.mdf</DependentUpon>
-    </Content>
     <Content Include="Global.asax" />
     <Content Include="login.html" />
     <Content Include="views\css\LandAssets.css" />
