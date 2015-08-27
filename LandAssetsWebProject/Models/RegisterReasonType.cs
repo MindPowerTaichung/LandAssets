@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LandAssetsWebProject.Models
+namespace LandAssets.Models
 {
     using System;
     using System.Collections.Generic;

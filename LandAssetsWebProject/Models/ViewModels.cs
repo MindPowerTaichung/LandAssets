@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace LandAssetsWebProject.Models
+namespace LandAssets.Models
 {
     public class LandBeforeViewModel
     {
@@ -21,5 +21,19 @@ namespace LandAssetsWebProject.Models
 
         public string RegisterReasonType { get; set; }
         public string LandType { get; set; }
+    }
+
+    public class LandTypeViewModel
+    {
+        public int Id { get; set; }
+        public string Type { get; set; }
+        public string TimestampString { get; set; }
+    }
+
+    public partial class RegisterReasonTypeViewModel
+    {
+        public int Id { get; set; }
+        public string Reason { get; set; }
+        public string TimestampString { get; set; }
     }
 }
