@@ -105,8 +105,8 @@ namespace LandAssets.Controllers
                 }
             }
 
-            return Ok(ToLandTypeViewModel(item_db));
-
+            //return Ok(ToLandTypeViewModel(item_db));
+            return Content(HttpStatusCode.Accepted, ToLandTypeViewModel(item_db));
         }
 
         // DELETE: api/LandTypes/5
@@ -122,7 +122,8 @@ namespace LandAssets.Controllers
             db.LandTypes.Remove(item_db);
             db.SaveChanges();
 
-            return Ok(new LandTypeViewModel { Id = id });
+            //return Ok(new LandTypeViewModel { Id = id });
+            return Content(HttpStatusCode.Accepted, ToLandTypeViewModel(item_db));
         }
 
         private LandTypeViewModel ToLandTypeViewModel(LandType item)

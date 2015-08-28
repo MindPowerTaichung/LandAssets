@@ -3,7 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LandAssetsWebProject", "LandAssetsWebProject\LandAssetsWebProject.csproj", "{79BFD197-1587-4F51-95A9-4B5399BD220D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LandAssetsWeb", "LandAssetsWebProject\LandAssetsWeb.csproj", "{79BFD197-1587-4F51-95A9-4B5399BD220D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LandAssetsTest", "LandAssetsTest\LandAssetsTest.csproj", "{78F9C942-EC55-4644-BA7B-0EEFABCE2123}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{31FACF49-530C-465A-8C8D-462C079F0E67}"
+	ProjectSection(SolutionItems) = preProject
+		Test.testsettings = Test.testsettings
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +22,10 @@ Global
 		{79BFD197-1587-4F51-95A9-4B5399BD220D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{79BFD197-1587-4F51-95A9-4B5399BD220D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{79BFD197-1587-4F51-95A9-4B5399BD220D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78F9C942-EC55-4644-BA7B-0EEFABCE2123}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78F9C942-EC55-4644-BA7B-0EEFABCE2123}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78F9C942-EC55-4644-BA7B-0EEFABCE2123}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78F9C942-EC55-4644-BA7B-0EEFABCE2123}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
